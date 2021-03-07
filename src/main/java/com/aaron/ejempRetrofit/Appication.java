@@ -2,8 +2,8 @@ package com.aaron.ejempRetrofit;
 
 import com.aaron.ejempRetrofit.domain.Weather;
 import com.aaron.ejempRetrofit.service.WeatherService;
-import rx.Observable;
 import rx.schedulers.Schedulers;
+import rx.Observable;
 
 import java.util.concurrent.Executors;
 
@@ -16,6 +16,7 @@ public class Appication {
 
         weatherService.getWoeid("ma")
                 .flatMap(Observable::from)
+                .filter(weather -> weather.getWoeid()>2000000)
                 .doOnCompleted(() -> System.out.println("Listado descargado"))
                 .doOnError(throwable -> System.out.println(throwable.getMessage()))
                 .subscribeOn(Schedulers.from(Executors.newCachedThreadPool()))
@@ -24,11 +25,5 @@ public class Appication {
         weatherService.getLocation("766273")
                 .subscribeOn(Schedulers.from(Executors.newCachedThreadPool()))
                 .subscribe(System.out::println);
-        //List<Weather> woeid = weatherService.getWoeid("san");
-
-        //Weather locations = weatherService.getLocation(woeid.get(0).getWoeid());
-
-        //System.out.println("Primera ciudad");
-        //System.out.println(locations);
     }
 }

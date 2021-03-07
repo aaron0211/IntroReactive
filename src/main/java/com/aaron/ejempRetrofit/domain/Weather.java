@@ -8,5 +8,5 @@ public class Weather {
 
     private String title;
     private String latt_long;
-    private String woeid;
+    private int woeid;
 }
