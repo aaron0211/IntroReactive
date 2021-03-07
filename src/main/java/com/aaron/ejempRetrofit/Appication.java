@@ -25,5 +25,7 @@ public class Appication {
         weatherService.getLocation("766273")
                 .subscribeOn(Schedulers.from(Executors.newCachedThreadPool()))
                 .subscribe(System.out::println);
+
+        System.out.println("Fin del programa");
     }
 }
