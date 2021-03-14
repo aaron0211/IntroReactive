@@ -27,20 +27,20 @@ public class WeatherService {
         api = retrofit.create(WeatherApiService.class);
     }
 
-    public List<Weather> getWoeid(String name){
-        Call<List<Weather>> listWoeid = api.getWoeid(name);
-        try{
-            Response<List<Weather>> response = listWoeid.execute();
-            return response.body();
-        }catch (IOException ioe){
-            ioe.printStackTrace();
-        }
-        return null;
-    }
-//
-//    public Observable<List<Weather>> getWoeid(String name) {
-//        return api.getWoeid(name);
+//    public List<Weather> getWoeid(String name){
+//        Call<List<Weather>> listWoeid = api.getWoeid(name);
+//        try{
+//            Response<List<Weather>> response = listWoeid.execute();
+//            return response.body();
+//        }catch (IOException ioe){
+//            ioe.printStackTrace();
+//        }
+//        return null;
 //    }
+
+    public Observable<List<Weather>> getWoeid(String name) {
+        return api.getWoeid(name);
+    }
 
     public Observable<Weather> getLocation(String woeid){
         return api.getLocation(woeid);

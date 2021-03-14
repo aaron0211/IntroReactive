@@ -12,7 +12,7 @@ import java.util.List;
 public interface WeatherApiService {
 
     @GET("/api/location/search/")
-    Call<List<Weather>> getWoeid(@Query("query") String name);
+    Observable<List<Weather>> getWoeid(@Query("query") String name);
 
     @GET("/api/location/{name}")
     Observable<Weather> getLocation(@Path("name") String woeid);
